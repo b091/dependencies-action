@@ -6,6 +6,7 @@
     "rootDir": "./src",
     "strict": true,
     "noImplicitAny": false,
+    "esModuleInterop": false,
     "lib": [
       "ESNext"
     ]

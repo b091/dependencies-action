@@ -3,9 +3,9 @@ import {config} from 'dotenv'
 import {artifactName, myToken, octokit} from './OctoKit'
 import * as fs from 'fs'
 import {info} from '@actions/core'
-import * as path from 'node:path'
+import * as path from 'path'
 
-const artifactPath = path.join(__dirname, 'artifact')
+const artifactPath = path.join('artifact')
 
 interface ArtifactDataProps {
   owner: string
