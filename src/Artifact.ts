@@ -1,9 +1,9 @@
-import {DefaultArtifactClient} from '@actions/artifact'
-import {config} from 'dotenv'
-import {artifactName, myToken, octokit} from './OctoKit'
 import * as fs from 'fs'
-import {info} from '@actions/core'
 import * as path from 'path'
+import {config} from 'dotenv'
+import {DefaultArtifactClient} from '@actions/artifact'
+import {artifactName, myToken, octokit} from './OctoKit'
+import {info} from '@actions/core'
 
 const artifactPath = path.join('artifact')
 

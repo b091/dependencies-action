@@ -52,12 +52,11 @@ export const evaluate = async () => {
 
     setOutput('Dependencies', JSON.stringify(relatedPullRequests))
 
-    relatedPullRequests.map(pr => {
-      info(`${pr.title}`)
-      info(`From: ${pr.owner}/${pr.repo}#${pr.number}`)
-      info(`Here is your ENV: ${JSON.stringify(pr.env)}`)
+    relatedPullRequests.map(pullRequest => {
+      info(`${pullRequest.title}`)
+      info(`From: ${pullRequest.owner}/${pullRequest.repo}#${pullRequest.number}`)
+      info(`Here is your ENV: ${JSON.stringify(pullRequest.env)}`)
     })
-
   } catch (e) {
     setFailed((e as Error)?.message)
     throw e
