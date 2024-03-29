@@ -40,5 +40,6 @@
   "bugs": {
     "url": "https://github.com/b091/pr-dependencies-action/issues"
   },
-  "homepage": "https://github.com/b091/pr-dependencies-action#readme"
+  "homepage": "https://github.com/b091/pr-dependencies-action#readme",
+  "type": "module"
 }
