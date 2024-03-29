@@ -50,7 +50,7 @@ export const evaluate = async () => {
       })
     }
 
-    setOutput('Dependencies', JSON.stringify(relatedPullRequests))
+    setOutput('PR_LIST', JSON.stringify(relatedPullRequests))
 
     relatedPullRequests.map(pullRequest => {
       info(`${pullRequest.title}`)

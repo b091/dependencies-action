@@ -1,5 +1,6 @@
 name: 'PR Dependency Check'
 description: 'Verify PR dependencies are merged or closed'
+id: pr-dependencies-action
 branding:
   icon: alert-triangle
   color: orange
