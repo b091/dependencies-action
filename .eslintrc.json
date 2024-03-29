@@ -1,7 +1,13 @@
 {
-  "env": { "node": true, "jest": true },
+  "env": {
+    "node": true,
+    "jest": true
+  },
   "parser": "@typescript-eslint/parser",
-  "parserOptions": { "ecmaVersion": 9, "sourceType": "module" },
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "sourceType": "module"
+  },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -11,5 +17,7 @@
     "plugin:import/typescript",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["@typescript-eslint"]
+  "plugins": [
+    "@typescript-eslint"
+  ]
 }

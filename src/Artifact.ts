@@ -1,45 +1,59 @@
 import {DefaultArtifactClient} from '@actions/artifact'
-import {config} from 'dotenv';
-import {myToken, octokit} from "./OctoKit";
+import {config} from 'dotenv'
+import {artifactName, myToken, octokit} from './OctoKit'
+import * as fs from 'fs'
+import {info} from '@actions/core'
+import * as path from 'node:path'
+
+const artifactPath = path.join(__dirname, 'artifact')
+
+interface ArtifactDataProps {
+  owner: string
+  repo: string
+  pull_number: number
+}
 
 const artifactClient = new DefaultArtifactClient()
 
 const getEnvFile = () => {
-    const myData = {};
-    config({
-        path: './publish-output/.env',
-        processEnv: myData
-    });
-    return myData;
+  const myData = {}
+  config({
+    path: `${artifactPath}/.env`,
+    processEnv: myData
+  })
+  return myData
 }
 
-export const getArtifactData = async (params: {owner:string, repo:string}) => {
-    const repoPullRequest = await octokit.rest.pulls.get({...params, pull_number: 112});
-    const repoRuns = await octokit.actions.listWorkflowRunsForRepo({
-        ...params,
-        head_sha: repoPullRequest.data.head.sha
-    });
-    const repoRunArtifacts = await octokit.actions.listWorkflowRunArtifacts({
-        ...params,
-        run_id: repoRuns.data.workflow_runs[0].id,
-        head_sha: repoPullRequest.data.head.sha,
-        name: 'publish-output'
+export const getArtifactData = async (params: ArtifactDataProps) => {
+  const repoPullRequest = await octokit.rest.pulls.get({...params})
+  const repoRuns = await octokit.actions.listWorkflowRunsForRepo({
+    ...params,
+    head_sha: repoPullRequest.data.head.sha
+  })
+  const repoRunArtifacts = await octokit.actions.listWorkflowRunArtifacts({
+    ...params,
+    run_id: repoRuns.data.workflow_runs[0].id,
+    head_sha: repoPullRequest.data.head.sha,
+    name: artifactName
+  })
+
+  const publishArtifact = repoRunArtifacts.data.artifacts.pop()
+
+  if (publishArtifact?.workflow_run?.id && publishArtifact?.id) {
+    fs.mkdir(artifactPath, () => info('Directory Created'))
+
+    await artifactClient.downloadArtifact(publishArtifact.id, {
+      path: artifactPath,
+      findBy: {
+        token: myToken,
+        workflowRunId: publishArtifact?.workflow_run?.id,
+        repositoryName: params.repo,
+        repositoryOwner: params.owner
+      }
     })
 
-    const publishArtifact = repoRunArtifacts.data.artifacts.pop();
+    return getEnvFile()
+  }
 
-    if (publishArtifact?.workflow_run?.id && publishArtifact?.id) {
-        const aaa = await artifactClient.downloadArtifact(publishArtifact.id, {
-            path: 'publish-output',
-            findBy: {
-                token: myToken,
-                workflowRunId: publishArtifact?.workflow_run?.id,
-                repositoryName: "vantage-backend",
-                repositoryOwner: "Presight-AI",
-
-            }
-        });
-        console.log('my-data', getEnvFile());
-    }
-
+  return {}
 }

@@ -9,10 +9,10 @@ The bot parses the first comment of a PR looking for the key phrases "depends on
 The action can detect links in the following styles:
 
 - Quick Link: `#5`
-- Partial Link: `gregsdennis/dependencies-action#5`
-- Partial URL: `gregsdennis/dependencies-action/pull/5`
-- Full URL: `https://github.com/gregsdennis/dependencies-action/pull/5`
-- Markdown: `[markdown link](https://github.com/gregsdennis/dependencies-action/pull/5)`
+- Partial Link: `b091/pr-dependencies-action#5`
+- Partial URL: `b091/pr-dependencies-action/pull/5`
+- Full URL: `https://github.com/b091/pr-dependencies-action/pull/5`
+- Markdown: `[markdown link](https://github.com/b091/pr-dependencies-action/pull/5)`
 
 Works for both issues and PRs!
 
@@ -20,8 +20,8 @@ Also supports custom domains for use with GitHub Enterprise!
 
 ## See it in action:
 
-- [PR to be landed first](http://github.com/gregsdennis/dependencies-action/pull/4)
-- [PR to be landed second](http://github.com/gregsdennis/dependencies-action/pull/5)
+- [PR to be landed first](http://github.com/b091/pr-dependencies-action/pull/4)
+- [PR to be landed second](http://github.com/b091/pr-dependencies-action/pull/5)
 
 ## Example usage
 
@@ -37,9 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Check Dependencies
     steps:
-    - uses: gregsdennis/dependencies-action@main
-      with:
-        custom-domains: my-custom-domain.io another.domain.com
+    - uses: b091/pr-dependencies-action@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```

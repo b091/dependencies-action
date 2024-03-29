@@ -1,7 +1,7 @@
-import {evaluate} from "./EvaluateDependencies";
+import {evaluate} from './EvaluateDependencies'
 
 async function run() {
-    await evaluate();
+  await evaluate()
 }
 
-run();
+run()

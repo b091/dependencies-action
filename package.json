@@ -1,4 +1,8 @@
 {
+  "name": "pr-dependencies-action",
+  "description": "A GitHub Action that enforces PR dependencies",
+  "version": "1.0.0",
+  "main": "dist/index.js",
   "dependencies": {
     "@actions/artifact": "2.1.4",
     "@actions/core": "1.10.1",
@@ -6,20 +10,17 @@
     "@octokit/rest": "20.0.2",
     "dotenv": "16.4.5"
   },
-  "name": "dependencies-action",
-  "description": "A GitHub Action that enforces PR dependencies",
-  "version": "1.0.0",
-  "main": "dist/index.js",
   "devDependencies": {
-    "@types/node": "12.12.6",
-    "@typescript-eslint/eslint-plugin": "6.14.0",
-    "@vercel/ncc": "0.33.4",
-    "concurrently": "5.2.0",
-    "eslint": "8.55.0",
-    "eslint-plugin-github": "4.10.1",
-    "eslint-plugin-prettier": "5.0.1",
-    "prettier": "3.1.1",
-    "typescript": "5.3.3"
+    "@types/node": "20.11.30",
+    "@typescript-eslint/eslint-plugin": "7.0.0",
+    "@vercel/ncc": "0.38.1",
+    "concurrently": "8.2.2",
+    "eslint": "8.57.0",
+    "eslint-plugin-github": "4.10.2",
+    "eslint-plugin-prettier": "5.1.3",
+    "prettier": "3.2.5",
+    "ts-node": "10.9.2",
+    "typescript": "5.4.3"
   },
   "scripts": {
     "build": "tsc",
@@ -31,14 +32,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gregsdennis/dependencies-action.git"
+    "url": "git+https://github.com/b091/pr-dependencies-action.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gregsdennis/dependencies-action/issues"
+    "url": "https://github.com/b091/pr-dependencies-action/issues"
   },
-  "homepage": "https://github.com/gregsdennis/dependencies-action#readme",
-  "type": "module"
+  "homepage": "https://github.com/b091/pr-dependencies-action#readme"
 }
