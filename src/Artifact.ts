@@ -16,12 +16,13 @@ interface ArtifactDataProps {
 const artifactClient = new DefaultArtifactClient()
 
 const getEnvFile = () => {
-  const myData = {}
-  config({
-    path: `${artifactPath}/.env`,
-    processEnv: myData
-  })
-  return myData
+  const path = `${artifactPath}/.env`
+  const output = config({path})
+  if (output.error) {
+    info(`Error parsing ${path} file: ${output.error}`)
+    return {}
+  }
+  return output.parsed || {}
 }
 
 export const getArtifactData = async (params: ArtifactDataProps) => {
