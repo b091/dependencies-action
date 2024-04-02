@@ -1,12 +1,12 @@
 on: [ pull_request, workflow_dispatch ]
 
 jobs:
-  self_test_job:
+  self_test:
     runs-on: ubuntu-latest
-    name: self test
+    name: "Self test"
     steps:
       - uses: actions/checkout@v2
-      - name: check dependencies
+      - name: "Check dependencies"
         uses: ./
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

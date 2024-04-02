@@ -28,16 +28,22 @@ Also supports custom domains for use with GitHub Enterprise!
 Just add the following to a `.yml` file in your `.github/workflows/` folder.
 
 ```yaml
-on:
-  pull_request_target: 
-    types: [opened, edited, closed, reopened]
+name: "Application Deploy"
 
 jobs:
-  check_dependencies:
+  with-dependencies:
     runs-on: ubuntu-latest
-    name: Check Dependencies
+    timeout-minutes: 60
     steps:
-    - uses: b091/pr-dependencies-action@main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "🖇️ PR Dependency Check"
+        id: pr-dependencies-action
+        uses: b091/pr-dependencies-action@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "🚀 Deploy"
+        shell: bash
+        env:
+          DEPENDENCIES: ${{ toJSON(steps.pr-dependencies-action.outputs.PR_LIST) }}
+        run: echo "$DEPENDENCIES"
+
 ```
