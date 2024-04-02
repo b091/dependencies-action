@@ -33,9 +33,9 @@ on:
     types: [opened, edited, closed, reopened]
 
 jobs:
-  check_dependencies:
+  pr_dependencies:
     runs-on: ubuntu-latest
-    name: Check Dependencies
+    name: "Check PR Dependencies"
     steps:
     - uses: b091/pr-dependencies-action@main
       env:

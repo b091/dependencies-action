@@ -3,7 +3,7 @@ on: [ pull_request, workflow_dispatch ]
 jobs:
   self_test:
     runs-on: ubuntu-latest
-    name: Self test
+    name: "Self test"
     steps:
       - uses: actions/checkout@v2
       - name: "Check dependencies"

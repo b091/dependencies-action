@@ -1,5 +1,5 @@
-name: 'PR Dependency Check'
-description: 'Verify PR dependencies are merged or closed'
+name: "PR Dependency Check"
+description: "Verify PR dependencies and get their artifacts"
 
 branding:
   icon: alert-triangle
@@ -7,4 +7,4 @@ branding:
 
 runs:
   using: node20
-  main: 'dist/index.js'
+  main: "dist/index.js"
